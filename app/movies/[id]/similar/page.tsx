@@ -1,21 +1,23 @@
-import { API_URL } from "../../../(home)/page";
 import SimilarMovie from "../../../../components/movie-similar";
 import styles from "../../../../styles/movie-similar.module.css";
+import { API_URL } from "../../../constants";
 
 export const metadata = {
   title: "Similar Movies",
 };
+
+type IParams = Promise<{
+  id: string;
+}>;
 
 async function getSimliarMovies(id: string) {
   const response = await fetch(`${API_URL}/${id}/similar`, {});
   return response.json();
 }
 
-export default async function Simliar({
-  params: { id },
-}: {
-  params: { id: string };
-}) {
+export default async function Simliar(props: { params: IParams }) {
+  const params = await props.params;
+  const id = params.id;
   const similars = await getSimliarMovies(id);
   return (
     <div className={styles.div}>
