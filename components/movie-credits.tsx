@@ -1,4 +1,3 @@
-import { Children, Fragment } from "react";
 import { API_URL } from "../app/(home)/page";
 import styles from "../styles/movie-credit.module.css";
 
@@ -18,7 +17,6 @@ export default async function Credits({ id }: { id: string }) {
             src={credit.profile_path}
             alt={credit.name}
           />
-
           <div>
             <h1 className={styles.title}>{credit.known_for_department}</h1>
             <h1 className={styles.name}>{credit.name}</h1>
